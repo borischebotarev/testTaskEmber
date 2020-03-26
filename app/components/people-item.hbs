@@ -1,1 +1,17 @@
-{{yield}}
+<li class="table__row">
+  <div class="cell cell1">
+    <img src="../public/assets/images/{{person.image}}"  alt="profile image">
+  </div>
+  <div class="cell cell2">{{person.firstName}}</div>
+  <div class="cell cell3">{{person.lastName}}</div>
+  <div class="cell cell4">{{person.role}}</div>
+  <div class="cell cell5">
+    {{#each person.framework as |framework|}}
+      <span>{{framework}}</span>
+    {{/each}}
+  </div>
+  <div class="cell cell6">
+    <LinkTo @route='edit' @model={{person.id}} class="button info">Edit</LinkTo>
+    <button type="button" class="button error">Fire</button>
+  </div>
+</li>

@@ -1,1 +1,6 @@
-{{yield}}
+<div class="header__wrapper">
+  <p class="header__title">{{this.url}}</p>
+  {{#if this.isRoot}}
+    <LinkTo @route='hire' class="button success">Hire</LinkTo>
+  {{/if}}
+</div>

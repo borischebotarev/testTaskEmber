@@ -1,0 +1,47 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300,300italic,400,700,700italic);
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+a,
+button {
+  font-family: 'Lato', 'Open Sans', 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+body {
+  background: #eeeeee;
+}
+html, body {
+  min-height: 100vh;
+}
+
+.main__wrapper {
+  padding: 0 20px;
+}
+
+.link__back {
+  color: #111111;
+  text-decoration: underline;
+  transition: color .1s linear;
+  margin: 20px 0;
+  display: inline-block;
+}
+.link__back:hover {
+  color: #222222;
+  text-decoration: none;
+}
+.link__back:active, .link__back:focus, .link__back:visited {
+  color: #111111;
+  text-decoration: underline;
+}
+
+hr {
+  margin: 15px 0;
+}
