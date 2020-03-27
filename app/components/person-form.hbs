@@ -3,33 +3,46 @@
   <div class="hire__row">
     <label for="firstName" class="hire__label">
       First Name
-      <input class="input" type="text" id="firstName" placeholder="firstName" required value="{{if @editPerson @editPerson.firstName}}">
+      <Input class="input"
+             type="text"
+             id="firstName"
+             placeholder="Type here"
+             required
+             @value={{this.firstName}} />
     </label>
   </div>
   <div class="hire__row">
     <label for="lastName" class="hire__label">
       Last Name
-      <input class="input" type="text" id="lastName" placeholder="lastName" required value="{{if @editPerson @editPerson.lastName}}">
+      <Input class="input"
+             type="text"
+             id="lastName"
+             placeholder="Type here"
+             required
+             @value={{this.lastName}} />
     </label>
   </div>
   <div class="hire__row">
     <label for="role" class="hire__label">
       Role
-      <select  class="input" id="role" required>
-        {{#if @editPerson}}
-        {{else}}
-          <option value="" disabled selected></option>
-        {{/if}}
-        <option value="frontend">frontend</option>
-        <option value="backend">backend</option>
-        <option value="fullstack">fullstack</option>
-      </select>
+      <PowerSelect @selected={{this.role}}
+                   @options={{this.roles}}
+                   @placeholder="Select role"
+                   @onChange={{fn (mut this.role)}} as |value|>
+        {{value}}
+      </PowerSelect>
     </label>
   </div>
   <div class="hire__row">
     <label for="firstName" class="hire__label">
       Framework
-      <Tags class="input"/>
+      <PowerSelectMultiple @searchEnabled={{true}}
+                           @options={{this.frameworks}}
+                           @selected={{this.framework}}
+                           @placeholder="Select some frameworks"
+                           @onChange={{fn (mut this.framework)}} as |value|>
+        {{value}}
+      </PowerSelectMultiple>
     </label>
   </div>
   <hr>

@@ -1,3 +1,7 @@
+<div class="filters">
+  <Input class="filter__input" type="text" placeholder="Filter by role" @value={{this.role}}/>
+  <Input class="filter__input" type="text" placeholder="Filter by framework" @value={{this.framework}}/>
+</div>
 <ul>
   <li class="table__row table__row--header">
     <div class="cell cell1"></div>
@@ -7,9 +11,11 @@
     <div class="cell cell5">Framework</div>
     <div class="cell cell6"></div>
   </li>
-  {{#each @people as |person|}}
-    <PeopleItem @person={{person}}></PeopleItem>
-  {{else}}
-    <p class="table__empty">No Items</p>
-  {{/each}}
+  <PeopleList::Filter @people={{@people}} @role={{this.role}} @framework={{this.framework}} as |results|>
+    {{#each results as |person|}}
+      <PeopleItem @person={{person}}></PeopleItem>
+    {{else}}
+      <p class="table__empty">No Items</p>
+    {{/each}}
+  </PeopleList::Filter>
 </ul>
