@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class HeaderComponent extends Component {
   @service router;
+  @service peopleData;
 
   get isRoot() {
     return this.url === 'Developers';
@@ -11,8 +12,7 @@ export default class HeaderComponent extends Component {
   get url() {
     const urlString = this.router.currentURL.slice(1);
     const indexSlash = urlString.indexOf('/') + 1;
-    const appData = localStorage.getItem('developers');
-    const person = indexSlash && appData ? JSON.parse(appData).data.find(developer => `${developer.id}` === urlString.slice(indexSlash)) : null;
-    return person ? `${person.attributes.firstName} ${person.attributes.lastName}` : urlString || 'Developers';
+    const personData = indexSlash ? this.peopleData.getItemById(+urlString.slice(indexSlash)) : null;
+    return personData ? `${personData.firstName} ${personData.lastName}` : urlString || 'Developers';
   }
 }

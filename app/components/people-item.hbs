@@ -11,7 +11,7 @@
     {{/each}}
   </div>
   <div class="cell cell6">
-    <LinkTo @route='edit' @model={{@person.id}} class="button info">Edit</LinkTo>
-    <button type="button" class="button error">Fire</button>
+    <LinkTo @route='edit' class="button info" @model={{@person.id}}>Edit</LinkTo>
+    <button type="button" class="button error" {{on "click" this.onClickFire}}>Fire</button>
   </div>
 </li>

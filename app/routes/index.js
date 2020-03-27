@@ -1,10 +1,10 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  @service peopleData;;
 
-  async model() {
-    const dataLS = localStorage.getItem('developers');
-    const data = dataLS ? JSON.parse(dataLS).data : null;
-    return data ? data.map(developer => ({id: developer.id, ...developer.attributes})) : []
+  model() {
+    return this.peopleData.getAllItems();
   }
 }
