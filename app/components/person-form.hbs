@@ -1,0 +1,44 @@
+<form class="main__wrapper">
+  <LinkTo @route='index' class="link__back">Back to developers</LinkTo>
+  <div class="hire__row">
+    <label for="firstName" class="hire__label">
+      First Name
+      <input class="input" type="text" id="firstName" placeholder="firstName" required value="{{if @editPerson @editPerson.firstName}}">
+    </label>
+  </div>
+  <div class="hire__row">
+    <label for="lastName" class="hire__label">
+      Last Name
+      <input class="input" type="text" id="lastName" placeholder="lastName" required value="{{if @editPerson @editPerson.lastName}}">
+    </label>
+  </div>
+  <div class="hire__row">
+    <label for="role" class="hire__label">
+      Role
+      <select  class="input" id="role" required>
+        {{#if @editPerson}}
+        {{else}}
+          <option value="" disabled selected></option>
+        {{/if}}
+        <option value="frontend">frontend</option>
+        <option value="backend">backend</option>
+        <option value="fullstack">fullstack</option>
+      </select>
+    </label>
+  </div>
+  <div class="hire__row">
+    <label for="firstName" class="hire__label">
+      Framework
+      <Tags class="input"/>
+    </label>
+  </div>
+  <hr>
+  {{#if @editPerson}}
+    <div class="edit__block--button">
+      <button type="button" class="button success" {{on "click" this.onClickSave}}>Save</button>
+      <button type="button" class="button error" {{on "click" this.onClickFire}}>Fire</button>
+    </div>
+  {{else}}
+    <button type="button" class="button success" {{on "click" this.onClickHire}}>Hire</button>
+  {{/if}}
+</form>

@@ -1,37 +1,7 @@
 <div class="main__wrapper">
   <div class="filters">
-    <input class="filter__input" type="text" placeholder="Filter by role">
-    <input class="filter__input" type="text" placeholder="Filter by framework">
+    <Input class="filter__input" type="text" placeholder="Filter by role" />
+    <Input class="filter__input" type="text" placeholder="Filter by framework" />
   </div>
-<!--  <PeopleList @title="List of People" @people="{{this.model}}"></PeopleList>-->
-  <ul>
-    <li class="table__row table__row--header">
-      <div class="cell cell1"></div>
-      <div class="cell cell2">firstName</div>
-      <div class="cell cell3">lastName</div>
-      <div class="cell cell4">role</div>
-      <div class="cell cell5">framework</div>
-      <div class="cell cell6"></div>
-    </li>
-    {{#each this.model as |person|}}
-<!--      <PeopleItem @person="{{person}}"></PeopleItem>-->
-      <li class="table__row">
-        <div class="cell cell1">
-          <img src="../../assets/images/{{person.image}}"  alt="profile image">
-        </div>
-        <div class="cell cell2">{{person.firstName}}</div>
-        <div class="cell cell3">{{person.lastName}}</div>
-        <div class="cell cell4">{{person.role}}</div>
-        <div class="cell cell5">
-          {{#each person.framework as |framework|}}
-            <span>{{framework}}</span>
-          {{/each}}
-        </div>
-        <div class="cell cell6">
-          <LinkTo @route='edit' @model={{person.id}} class="button info">Edit</LinkTo>
-          <button type="button" class="button error">Fire</button>
-        </div>
-      </li>
-    {{/each}}
-  </ul>
+  <PeopleList @title="List of People" @people={{@model}}></PeopleList>
 </div>

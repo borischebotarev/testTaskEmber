@@ -12,7 +12,7 @@ export default class HeaderComponent extends Component {
     const urlString = this.router.currentURL.slice(1);
     const indexSlash = urlString.indexOf('/') + 1;
     const appData = localStorage.getItem('developers');
-    const name = indexSlash && appData ? JSON.parse(appData).find(developer => developer.id === urlString.slice(indexSlash)) : null;
-    return name ? `${name.firstName} ${name.lastName}` : urlString || 'Developers';
+    const person = indexSlash && appData ? JSON.parse(appData).data.find(developer => `${developer.id}` === urlString.slice(indexSlash)) : null;
+    return person ? `${person.attributes.firstName} ${person.attributes.lastName}` : urlString || 'Developers';
   }
 }
