@@ -20,6 +20,7 @@ export default class PersonFormComponent extends Component {
 
   @action
   onClickHire() {
+    if (!this.validateForm()) return false;
     const newData = {
       firstName: this.firstName,
       lastName: this.lastName,
@@ -38,6 +39,7 @@ export default class PersonFormComponent extends Component {
   }
   @action
   onClickSave() {
+    if (!this.validateForm()) return false;
     const updateData = {
       firstName: this.firstName,
       lastName: this.lastName,
@@ -48,5 +50,13 @@ export default class PersonFormComponent extends Component {
     };
     this.peopleData.update(updateData);
     this.router.transitionTo('index');
+  }
+
+  validateForm() {
+    if (!((this.firstName && this.firstName.trim()) && (this.lastName && this.lastName.trim()))){
+      alert('"First Name" and "Last Name" fields are required. Only spaces are not allowed');
+      return false;
+    }
+    return true;
   }
 }

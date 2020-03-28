@@ -1,4 +1,4 @@
-<form class="main__wrapper">
+<form class="main__wrapper" {{on "submit" this.validateForm}}>
   <LinkTo @route='index' class="link__back">Back to developers</LinkTo>
   <div class="hire__row">
     <label for="firstName" class="hire__label">
@@ -34,7 +34,7 @@
     </label>
   </div>
   <div class="hire__row">
-    <label for="firstName" class="hire__label">
+    <label for="framework" class="hire__label">
       Framework
       <PowerSelectMultiple @searchEnabled={{true}}
                            @options={{this.frameworks}}
