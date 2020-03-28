@@ -84,6 +84,8 @@
   padding: 3px 5px;
   border: 1px solid #cccccc;
   border-radius: 7px;
+  display: inline-block;
+  margin: 2px 0;
 }
 .table__empty {
   text-align: center;

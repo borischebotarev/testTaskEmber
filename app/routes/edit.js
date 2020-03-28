@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 export default class EditRoute extends Route {
   @service peopleData;
 
-  model(params) {
-    return this.peopleData.getItemById(+params.id);
+  model({ id }) {
+    return this.peopleData.getItemById(+id);
   }
 }

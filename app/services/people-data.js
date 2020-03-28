@@ -4,8 +4,13 @@ const KEY_LOCAL_STORAGE =  'developers2';
 export default class PeopleDataService extends Service {
   constructor(...params) {
     super(...params);
+    this.connectToLS();
+  }
+
+  connectToLS() {
     const dataLS = localStorage.getItem(KEY_LOCAL_STORAGE);
     this.items = dataLS ? JSON.parse(dataLS) : [];
+    this.sortArray();
     const itemWithMaxIndex = this.items.reduce((prev, cur) => {
       if (prev.b > cur.b) return prev;
       return cur
@@ -13,7 +18,16 @@ export default class PeopleDataService extends Service {
     this.maxIndex = itemWithMaxIndex ? itemWithMaxIndex.id : 0;
   }
 
+  sortArray() {
+    this.items.sort((a, b) => a.id > b.id ? 1 : -1);
+  }
+
+  setLS() {
+    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(this.items))
+  }
+
   getAllItems() {
+    this.connectToLS();
     return this.items;
   }
 
@@ -23,20 +37,18 @@ export default class PeopleDataService extends Service {
 
   add(newItem) {
     this.items.push(newItem);
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(this.items))
+    this.sortArray();
+    this.setLS();
   }
 
   remove(id) {
     this.items = this.items.filter(developer =>  developer.id !== id);
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(this.items))
+    this.setLS();
+    this.connectToLS();
   }
 
   update(item) {
-    let updatedItem = this.items.find(developer => developer.id === item.id);
-    updatedItem.firstName = item.firstName;
-    updatedItem.lastName = item.lastName;
-    updatedItem.role = item.role;
-    updatedItem.framework = item.framework;
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(this.items))
+    this.remove(item.id);
+    this.add(item);
   }
 }
