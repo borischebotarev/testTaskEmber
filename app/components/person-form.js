@@ -8,6 +8,7 @@ const ROLES = ['frontend', 'backend', 'fullstack'];
 
 export default class PersonFormComponent extends Component {
   @service peopleData;
+  @service router;
 
   @tracked firstName = this.args.editPerson ? this.args.editPerson.firstName : "";
   @tracked lastName = this.args.editPerson ? this.args.editPerson.lastName : "";
@@ -20,29 +21,32 @@ export default class PersonFormComponent extends Component {
   @action
   onClickHire() {
     const newData = {
-      firstName: `${this.firstName}`,
-      lastName: `${this.lastName}`,
-      role: `${this.role}`,
-      framework: this.framework.concat(),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      role: this.role,
+      framework: this.framework,
       image: 'teaching-tomster.png',
       id: this.peopleData.maxIndex + 1,
     };
-    this.peopleData.add(Object.assign({}, newData));
+    this.peopleData.add(newData);
+    this.router.transitionTo('index');
   }
   @action
   onClickFire() {
-    this.peopleData.add(this.args.editPerson.id);
+    this.peopleData.remove(this.args.editPerson.id);
+    this.router.transitionTo('index');
   }
   @action
   onClickSave() {
     const updateData = {
-      firstName: `${this.firstName}`,
-      lastName: `${this.lastName}`,
-      role: `${this.role}`,
-      framework: this.framework.concat(),
+      firstName: this.firstName,
+      lastName: this.lastName,
+      role: this.role,
+      framework: this.framework,
+      image: 'teaching-tomster.png',
       id: this.args.editPerson.id,
     };
-    this.peopleData.update(Object.assign({}, updateData));
+    this.peopleData.update(updateData);
+    this.router.transitionTo('index');
   }
-
 }
