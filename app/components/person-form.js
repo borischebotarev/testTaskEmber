@@ -26,7 +26,7 @@ export default class PersonFormComponent extends Component {
       lastName: this.lastName,
       role: this.role,
       framework: this.framework,
-      image: 'teaching-tomster.png',
+      image: `avatar${this.getRandomNumber()}.png`,
       id: this.peopleData.maxIndex + 1,
     };
     this.peopleData.add(newData);
@@ -45,7 +45,7 @@ export default class PersonFormComponent extends Component {
       lastName: this.lastName,
       role: this.role,
       framework: this.framework,
-      image: 'teaching-tomster.png',
+      image: this.args.editPerson.image,
       id: this.args.editPerson.id,
     };
     this.peopleData.update(updateData);
@@ -53,10 +53,21 @@ export default class PersonFormComponent extends Component {
   }
 
   validateForm() {
-    if (!((this.firstName && this.firstName.trim()) && (this.lastName && this.lastName.trim()))){
-      alert('"First Name" and "Last Name" fields are required. Only spaces are not allowed');
+    if (!this.firstName.trim().length || !this.lastName.trim().length) {
+      const invalidFields = [];
+      if (!this.firstName.trim().length) {
+        invalidFields.push("First Name");
+      }
+      if (!this.lastName.trim().length) {
+        invalidFields.push("Last Name");
+      }
+      alert(`${invalidFields.join(' and ')} field${invalidFields.length === 1 ? '' : 's'} ${invalidFields.length === 1 ? 'is' : 'are'} required. Only spaces are not allowed`);
       return false;
     }
     return true;
+  }
+
+  getRandomNumber() {
+    return Math.floor(1 + Math.random() * 3);
   }
 }

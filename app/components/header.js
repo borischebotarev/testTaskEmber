@@ -6,10 +6,10 @@ export default class HeaderComponent extends Component {
   @service peopleData;
 
   get isRoot() {
-    return this.url === 'Developers';
+    return this.title === 'Developers';
   }
 
-  get url() {
+  get title() {
     const urlString = this.router.currentURL.slice(1);
     const indexSlash = urlString.indexOf('/') + 1;
     const personData = indexSlash ? this.peopleData.getItemById(+urlString.slice(indexSlash)) : null;
